@@ -6,11 +6,7 @@ WORKDIR /src
 
 COPY ./  ./
 
-RUN dotnet restore
-
-COPY . .
-
-RUN dotnet publish "Lab 1.5.csproj" --output /app/ --configuration Release --no-restore
+RUN dotnet publish "Lab 1.5.csproj" --output /app/ --configuration Release
 
 FROM base AS final
 WORKDIR /app
