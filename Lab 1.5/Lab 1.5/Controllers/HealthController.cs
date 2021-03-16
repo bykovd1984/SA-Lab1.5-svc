@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace Lab_1._5.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class HealthController : ControllerBase
     {
         private readonly ILogger<HealthController> _logger;
@@ -20,19 +20,19 @@ namespace Lab_1._5.Controllers
             return Ok(new { status = "Ok" });
         }
 
-        [HttpGet]
+        [HttpGet("ready")]
         public IActionResult Ready()
         {
             if (ReadyChecker.IsReady)
-                return Ok();
+                return Ok("ready");
 
             return BadRequest();
         }
 
-        [HttpGet]
+        [HttpGet("live")]
         public IActionResult Live()
         {
-            return Ok();
+            return Ok("live");
         }
     }
 }
