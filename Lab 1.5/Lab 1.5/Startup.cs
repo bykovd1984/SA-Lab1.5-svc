@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Lab_1._5
 {
     public class Startup
     {
+
+        public static bool IsReady = false;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            ReadyChecker.Start();
         }
 
         public IConfiguration Configuration { get; }
@@ -35,8 +35,6 @@ namespace Lab_1._5
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
